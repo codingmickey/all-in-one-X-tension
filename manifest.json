@@ -11,6 +11,10 @@
     {
       "matches": ["https://twitter.com/*"],
       "js": ["content.js"]
+    },
+    {
+      "matches": ["https://twitter.com/*"],
+      "js": ["scipts/createLists.js"]
     }
   ],
   "browser_action": {
