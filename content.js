@@ -31,7 +31,8 @@ async function actualMaal() {
   // Create a list to store our saanps
   // For creating lists
   // Didn't followback RIP 👿
-  chrome.runtime.sendMessage(startMakingAList);
+  console.log('making a list..');
+  chrome.runtime.sendMessage({ action: 'startMakingAList', usersToAct: allSaanps });
 }
 
 // Not collecting pokemons but saanps
@@ -97,3 +98,5 @@ async function collectUserNames() {
 
   return { tempTheseProfilesDontFollowBack, tempAllProfiles };
 }
+
+console.log('content.js injecteedd');
