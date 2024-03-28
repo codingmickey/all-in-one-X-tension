@@ -1,4 +1,4 @@
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
   if (message.action === 'startAutomation') {
     // Your automation logic using Puppeteer or similar tools
     // Example: Open Twitter, log in, identify non-followers, move to list, and unfollow
@@ -8,17 +8,69 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
     const regexPattern = new RegExp('https://twitter.com/[^/]+/following');
 
-    if (regexPattern.test(window.location.href)) {
-      const firstUser = document.querySelector("div[aria-label='Timeline: Following'] div[data-testid='UserCell'] > div > div:nth-child(2) > div > div > div > div:nth-child(2) > div:nth-child(2) > div");
-      console.log(firstUser);
-      console.log('startAutomation');
-      12111212
-    }
+    // For creating lists https://twitter.com/i/lists/create
+    // Didn't followback RIP 👿
 
-    while()
+    if (regexPattern.test(window.location.href)) {
+      await actualMaal();
+    }
 
     console.log(firstUser);
   }
 });
 
-console.log('content.js');#react-root > div > div > div.css-175oi2r.r-1f2l425.r-13qz1uu.r-417010.r-18u37iz > main > div > div > div > div.css-175oi2r.r-kemksi.r-1kqtdi0.r-13l2t4g.r-1ljd8xs.r-1phboty.r-16y2uox.r-184en5c.r-61z16t.r-11wrixw.r-1jgb5lz.r-13qz1uu.r-1ye8kvj > div > section > div > div > div:nth-child(1) > div > div > div > div > div.css-175oi2r.r-1iusvr4.r-16y2uox > div.css-175oi2r.r-1awozwy.r-18u37iz.r-1wtj0ep > div.css-175oi2r.r-1wbh5a2.r-dnmrzs.r-1ny4l3l > div > div.css-175oi2r.r-1awozwy.r-18u37iz.r-1wbh5a2 > div.css-175oi2r.r-1awozwy.r-z2wwpe.r-6koalj.r-1q142lx
+async function scrollToBottom() {
+  let previousHeight = 0;
+  let currentHeight = -1;
+
+  while (previousHeight !== currentHeight) {
+    previousHeight = currentHeight;
+    window.scrollTo(0, document.body.scrollHeight);
+    await new Promise((resolve) => setTimeout(resolve, 10000)); // Wait for new content to load (adjust delay as needed)
+    currentHeight = document.body.scrollHeight;
+  }
+}
+
+// Function to collect items from the page
+async function collectItems() {
+  // Scroll to the bottom of the page
+  await scrollToBottom();
+
+  // Logic to collect items
+  const theseProfilesDontFollowBack = [];
+  const allProfiles = [];
+  const allFollowingAccounts = document.querySelectorAll(
+    "div[aria-label='Timeline: Following'] div[data-testid='UserCell']"
+  ); // Adjust selector based on your HTML structure
+
+  allFollowingAccounts.forEach((user) => {
+    console.log(user);
+    const doesFollowBack = user.querySelector(
+      'div > div:nth-child(2) > div > div > div > div:nth-child(2) > div:nth-child(2) > div'
+    );
+    // @gamer_2402
+    const userName = user.querySelector(
+      'div > div:nth-child(2) > div > div > div > div:nth-child(2) > div > a > div > div > span'
+    ).innerText;
+
+    if (!doesFollowBack) {
+      theseProfilesDontFollowBack.push(userName);
+    }
+    allProfiles.push(userName);
+  });
+
+  console.log(allProfiles);
+
+  return theseProfilesDontFollowBack;
+}
+
+async function actualMaal() {
+  const firstUser = document.querySelector(
+    "div[aria-label='Timeline: Following'] div[data-testid='UserCell'] > div > div:nth-child(2) > div > div > div > div:nth-child(2) > div:nth-child(2) > div"
+  );
+  console.log(firstUser);
+  console.log('startAutomation');
+  // If null then doesn't follow back
+  const allSaanps = await collectItems();
+  console.log(allSaanps);
+}
