@@ -16,9 +16,10 @@
 (.. as you enjoy watching it for a few minutes and then it gets boring)
 
 ## Demo Video
-(no sound/music, as I'm on a train and also my OBS kinda gave up on me)
 
-[Demo video of the extension](https://github.com/codingmickey/X-unfollowers-tolist/assets/42518907/d9b65523-de01-408b-b146-c6fde9f3bf53)
+[Demo video of the extension](https://github.com/codingmickey/X-unfollowers-tolist/assets/42518907/0dc0b5db-79a0-4eff-bdbf-3f3b964a3ad0)
+
+Music credits: In Motion by Trent Reznor & Atticus Ross (The Social Network OST)
 
 ## Pros:
 - Doesn't use the super pricey X API so it's FREE of cost for anyone to run it
