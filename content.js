@@ -32,7 +32,7 @@ async function actualMaal() {
   // For creating lists
   // Didn't followback RIP 👿
   console.log('making a list..');
-  chrome.runtime.sendMessage({ action: 'startMakingAList', usersToAct: allSaanps });
+  chrome.runtime.sendMessage({ action: 'startMakingAList', usersToAct: allSaanps, index: 0 });
 }
 
 // Not collecting pokemons but saanps

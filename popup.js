@@ -3,7 +3,7 @@ bkg.console.log('foo');
 
 document.getElementById('startAutomation').addEventListener('click', () => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    bkg.console.log('tabs', tabs);
+    bkg.console.log('tabs', tabs, tabs[0].url);
 
     const regexPattern = new RegExp('https://twitter.com/[^/]+/following');
 
@@ -13,7 +13,7 @@ document.getElementById('startAutomation').addEventListener('click', () => {
       console.log(firstUser);
       console.log('startAutomation');
 
-      chrome.tabs.update(tabs[0].id, { url: 'https://' });
+      // chrome.tabs.update(tabs[0].id, { url: 'https://' });
     }
   });
 });

@@ -1,8 +1,129 @@
 chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
-  console.log('CREATELISTS.js', message);
+  // wait for the webapge to load
   if (message.action === 'startMakingAListInject') {
-    console.log('Should I start making a list?');
+    console.log({ message, text: `div[aria-label="Following ${message.usersToAct[message.index]}"]` });
+
+    // wait until the div[aria-label="Following @${message.username}"] appears
+    const interval = setInterval(() => {
+      const followingButton = document.querySelector(
+        `div[aria-label="Following ${message.usersToAct[message.index]}"]`
+      );
+      console.log('followingButton', followingButton);
+      if (followingButton) {
+        clearInterval(interval);
+        followingButton.click();
+
+        const secondInterval = setInterval(() => {
+          const confirmationSheetConfirm = document.querySelector('div[data-testid="confirmationSheetConfirm"]');
+          console.log('confirmationSheetConfirm', confirmationSheetConfirm);
+          if (confirmationSheetConfirm) {
+            clearInterval(secondInterval);
+            confirmationSheetConfirm.click();
+
+            const thirdInterval = setInterval(() => {
+              const userActions = document.querySelector('div[data-testid="userActions"]');
+              console.log('userActions', userActions);
+              if (userActions) {
+                clearInterval(thirdInterval);
+                userActions.click();
+
+                const fourthInterval = setInterval(() => {
+                  const addMember = document.querySelector('a[href="/i/lists/add_member"]');
+                  console.log('addMember', addMember);
+                  if (addMember) {
+                    clearInterval(fourthInterval);
+                    addMember.click();
+
+                    const fifthInterval = setInterval(() => {
+                      const listCell = document.querySelectorAll(
+                        'div[data-testid="listCell"] > div > div > div:nth-child(2) > div > div > div > div > span'
+                      );
+                      console.log('listCell', listCell);
+                      if (listCell.length !== 0) {
+                        clearInterval(fifthInterval);
+                        listCell.forEach((element) => {
+                          if (element.innerText === "Didn't follow back RIP") {
+                            element.click();
+                          }
+                        });
+
+                        const sixthInterval = setInterval(() => {
+                          const saveButton = document.querySelector(
+                            'div[aria-labelledby="modal-header"] > div > div > div > div > div  div > div  > div > div > div:nth-child(3) > div'
+                          );
+                          console.log('saveButton', saveButton);
+                          if (saveButton) {
+                            clearInterval(sixthInterval);
+                            saveButton.click();
+
+                            chrome.runtime.sendMessage({
+                              action: 'startMakingAList',
+                              usersToAct: message.usersToAct,
+                              index: message.index + 1
+                            });
+                          }
+                        }, 1000);
+                      }
+                    }, 1000);
+                  }
+                }, 1000);
+              }
+            }, 1000);
+          }
+        }, 1000);
+      }
+    }, 1000);
   }
+
+  // document.querySelector('div[data-testid="confirmationSheetConfirm"]').click();
+
+  // // Adding to the list
+  // document.querySelector('div[data-testid="userActions"]').click();
+  // document.querySelector('a[href="/i/lists/add_member"]').click();
+  // document
+  //   .querySelectorAll('div[data-testid="listCell"] > div > div > div:nth-child(2) > div > div > div > div > span')
+  //   .forEach((element) => {
+  //     if (element.innerText === "Didn't follow back RIP") {
+  //       element.click();
+  //     }
+  //   });
+
+  // // Click on save
+  // document
+  //   .querySelector(
+  //     'div[aria-labelledby="modal-header"] > div > div > div > div > div  div > div  > div > div > div:nth-child(3) > div'
+  //   )
+  //   .click();
+  // * RIGHT CODE
+
+  // anyway to check from the chrome extension if the page is loaded or not?
+
+  // console.log('CREATELISTS.js', message);
+  // // if (message.action === 'startMakingAListInject') {
+  // console.log('Should I start making a list?');
+
+  // // Unfollowing
+  // document.querySelector(`div[aria-label="Following @${message.username}"]`).click();
+  // document.querySelector('div[data-testid="confirmationSheetConfirm"]').click();
+
+  // // Adding to the list
+  // document.querySelector('div[data-testid="userActions"]').click();
+  // document.querySelector('a[href="/i/lists/add_member"]').click();
+  // document
+  //   .querySelectorAll('div[data-testid="listCell"] > div > div > div:nth-child(2) > div > div > div > div > span')
+  //   .forEach((element) => {
+  //     if (element.innerText === "Didn't follow back RIP") {
+  //       element.click();
+  //     }
+  //   });
+
+  // // Click on save
+  // document
+  //   .querySelector(
+  //     'div[aria-labelledby="modal-header"] > div > div > div > div > div  div > div  > div > div > div:nth-child(3) > div'
+  //   )
+  //   .click();
+  // // }
 });
 
 console.log('Create Listsssss');
