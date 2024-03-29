@@ -18,11 +18,12 @@
 ## Demo Video
 (no sound/music, as I'm on a train and also my OBS kinda gave up on me)
 
+[Demo video of the extension](https://github.com/codingmickey/X-unfollowers-tolist/assets/42518907/d9b65523-de01-408b-b146-c6fde9f3bf53)
 
-Pros:
+## Pros:
 - Doesn't use the super pricey X API so it's FREE of cost for anyone to run it
 
-Cons:
+## Cons:
 - Need to keep the tab open and cannot interfere with it
 - Takes time for this to run, especially with profiles with large following/not following back ratio
 - Code is *very* crap, I tried to learn and build it so .. (but the user doesn't care, con for me)
