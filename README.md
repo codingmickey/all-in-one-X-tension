@@ -29,7 +29,7 @@
 - Code is *very* crap, I tried to learn and build it so .. (but the user doesn't care, con for me)
 
 
-Have fun clearing your following into a list :D
+# Have fun clearing your following into a list :D
 
 
 
