@@ -2,7 +2,7 @@
 
 ## How to load the chrome extension
 
-1. Download this repository (via git clone or by Downloading the zip)
+1. [Download this repository - CLICK HERE](https://github.com/codingmickey/X-unfollowers-tolist/archive/refs/heads/main.zip)
 1. Go to `chrome://extensions/` in your browser
 1. Enable Developer mode
 1. Click on "Load unpacked"
