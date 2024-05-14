@@ -4,11 +4,47 @@
 <head>
     <meta charset="UTF-8">
     <title>Twitter Automation</title>
+    <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-    <button id="startAutomation">Start Automation</button>
-    <p>Please don't move away from this page (if possible) AND don't click anything until the automation is over</p>
+    <div class="container">
+        <div class="tabs">
+            <div class="tab active" data-target="giveaway">Giveaway</div>
+            <div class="tab" data-target="followerList">Follower to List</div>
+        </div>
+        <div id="giveaway" class="content active">
+            <h2>Giveaway</h2>
+            <form id="giveawayForm">
+                <div class="form-group">
+                    <label for="tweetUrl">Enter the URL of the tweet</label>
+                    <input type="text" id="tweetUrl" name="tweetUrl" placeholder="Tweet URL"
+                        pattern="https?:\/\/(www\.)?(twitter\.com|x\.com)\/[^\s]+" required>
+                </div>
+                <div class="form-group">
+                    <label class="radio-label"><input type="radio" name="interactionType" value="likes" required>
+                        Likes</label>
+                    <label class="radio-label"><input type="radio" name="interactionType" value="retweets" required>
+                        Retweets</label>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+            <div id="result">RESULT
+            </div>
+
+        </div>
+        <div id="followerList" class="content">
+            <h2>Follower to List</h2>
+            <p style="color: rgb(255, 87, 45)"><strong>IMP: Make sure you are on the followers page of your
+                    account</strong></p>
+            <p>Content for the Follower to List tab.</p>
+            <button id="startAutomation">Start Automation</button>
+            <p>Please don't move away from this page (if possible) AND don't click anything until the automation is over
+            </p>
+
+        </div>
+    </div>
+    <script src="script.js"></script>
     <script src="popup.js"></script>
 </body>
 

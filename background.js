@@ -37,4 +37,30 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     }
     // }
   }
+
+  if (message.action === 'openNewTab') {
+    chrome.tabs.create({ url: `${message.url}/retweets` }, (tab) => {
+      chrome.tabs.onUpdated.addListener(function listener(tabId, info) {
+        if (info.status === 'complete' && tabId === tab.id) {
+          chrome.tabs.onUpdated.removeListener(listener);
+          chrome.tabs.sendMessage(
+            tab.id,
+            {
+              action: 'startCollectingUsers'
+            },
+            (response) => {
+              console.log(response);
+              console.log({ someUsers: response });
+              sendResponse({ message: 'Users collected successfully', response });
+
+              chrome.runtime.sendMessage({
+                msg: 'usersCollectingCompleted',
+                data: response
+              });
+            }
+          );
+        }
+      });
+    });
+  }
 });

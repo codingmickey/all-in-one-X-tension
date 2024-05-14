@@ -1,9 +1,9 @@
-var bkg = chrome.extension.getBackgroundPage();
-bkg.console.log('foo');
+// var bkg = chrome.extension.getBackgroundPage();
+// bkg.console.log('foo');
 
 document.getElementById('startAutomation').addEventListener('click', () => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    bkg.console.log('tabs', tabs, tabs[0].url);
+    // bkg.console.log('tabs', tabs, tabs[0].url);
 
     const regexPattern = new RegExp('https://twitter.com/[^/]+/following');
 

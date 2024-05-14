@@ -62,17 +62,17 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
                               index: message.index + 1
                             });
                           }
-                        }, 1000);
+                        }, 20);
                       }
-                    }, 1000);
+                    }, 20);
                   }
-                }, 1000);
+                }, 20);
               }
-            }, 1000);
+            }, 20);
           }
-        }, 1000);
+        }, 20);
       }
-    }, 1000);
+    }, 20);
   }
 
   // document.querySelector('div[data-testid="confirmationSheetConfirm"]').click();

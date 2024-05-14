@@ -10,7 +10,7 @@
   "content_scripts": [
     {
       "matches": ["https://twitter.com/*"],
-      "js": ["content.js", "createList.js"]
+      "js": ["content.js", "createList.js", "retweets.js"]
     }
   ],
   "browser_action": {
