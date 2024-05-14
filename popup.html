@@ -22,14 +22,26 @@
                         pattern="https?:\/\/(www\.)?(twitter\.com|x\.com)\/[^\s]+" required>
                 </div>
                 <div class="form-group">
-                    <label class="radio-label"><input type="radio" name="interactionType" value="likes" required>
+                    <label class="radio-label"><input type="radio" disabled name="interactionType" value="likes"
+                            required>
                         Likes</label>
                     <label class="radio-label"><input type="radio" name="interactionType" value="retweets" required>
                         Retweets</label>
                 </div>
                 <button type="submit">Submit</button>
             </form>
-            <div id="result">RESULT
+            <div id="randomScroller">
+                <h2></h2>
+                <div class="winner"></div>
+                <div class="scroller-container">
+                    <div class="scroller" id="scroller">
+                        <!-- The items will be dynamically added by JavaScript -->
+                    </div>
+                </div>
+                <button id="startScroller">Select Winner 🎉</button>
+                <div style="text-align: right;">
+                    <i>luck is luck</i>
+                </div>
             </div>
 
         </div>
@@ -43,7 +55,14 @@
             </p>
 
         </div>
+        <div id="followTwitter">
+            <a href="https://twitter.com/codingmickey" target="_blank">
+                Follow Me on Twitter @codingmickey
+            </a>
+        </div>
+
     </div>
+
     <script src="script.js"></script>
     <script src="popup.js"></script>
 </body>
